@@ -1,0 +1,130 @@
+<div class="max-w-2xl mx-auto p-6">
+  <h2 class="text-2xl font-bold mb-6">Reactive Form</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <!-- Personal Details -->
+    <div formGroupName="personalDetails" class="mb-6 p-4 border rounded">
+      <h3 class="text-lg font-semibold mb-4">Personal Details</h3>
+      <div class="mb-4">
+        <label class="block mb-2">First Name</label>
+        <input formControlName="firstName" class="w-full p-2 border rounded" />
+        <div
+          *ngIf="form.get('personalDetails.firstName')?.errors"
+          class="text-red-500 text-sm"
+        >
+          <div
+            *ngIf="
+              form.get('personalDetails.firstName')?.hasError('required') &&
+              form.get('personalDetails.firstName')?.touched
+            "
+          >
+            First name is required
+          </div>
+          <div
+            *ngIf="
+              form.get('personalDetails.firstName')?.hasError('minlength') &&
+              form.get('personalDetails.firstName')?.touched
+            "
+          >
+            Minimum 3 characters required
+          </div>
+        </div>
+      </div>
+      <div class="mb-4">
+        <label class="block mb-2">Last Name</label>
+        <input formControlName="lastName" class="w-full p-2 border rounded" />
+        <div
+          *ngIf="form.get('personalDetails.lastName')?.errors"
+          class="text-red-500 text-sm"
+        >
+          <div
+            *ngIf="
+              form.get('personalDetails.lastName')?.hasError('required') &&
+              form.get('personalDetails.lastName')?.touched
+            "
+          >
+            Last name is required
+          </div>
+          <div
+            *ngIf="
+              form.get('personalDetails.lastName')?.hasError('minlength') &&
+              form.get('personalDetails.lastName')?.touched
+            "
+          >
+            Minimum 3 characters required
+          </div>
+        </div>
+      </div>
+      <div class="mb-4">
+        <label class="block mb-2">Age</label>
+        <input
+          type="number"
+          formControlName="age"
+          class="w-full p-2 border rounded"
+        />
+        <div
+          *ngIf="form.get('personalDetails.age')?.errors"
+          class="text-red-500 text-sm"
+        >
+          <div
+            *ngIf="
+              form.get('personalDetails.age')?.hasError('required') &&
+              form.get('personalDetails.age')?.touched
+            "
+          >
+            Age is required
+          </div>
+          <div
+            *ngIf="
+              form.get('personalDetails.age')?.hasError('min') &&
+              form.get('personalDetails.age')?.touched
+            "
+          >
+            Must be at least 18 years old
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Addresses -->
+    <div formArrayName="addresses" class="mb-6">
+      <h3 class="text-lg font-semibold mb-4">Addresses</h3>
+      <div
+        *ngFor="let address of addresses.controls; let i = index"
+        [formGroupName]="i"
+        class="mb-4 p-4 border rounded"
+      >
+        <div class="mb-4">
+          <label class="block mb-2">Street</label>
+          <input formControlName="street" class="w-full p-2 border rounded" />
+          <div *ngIf="getControl(i)?.errors" class="text-red-500 text-sm">
+            <div
+              *ngIf="
+                getControl(i)?.hasError('required') && getControl(i)?.touched
+              "
+            >
+              Street is required
+            </div>
+          </div>
+        </div>
+        <button
+          type="button"
+          (click)="removeAddress(i)"
+          class="bg-red-500 text-white px-4 py-2 rounded"
+        >
+          Remove Address
+        </button>
+      </div>
+      <button
+        type="button"
+        (click)="addAddress()"
+        class="bg-blue-500 text-white px-4 py-2 rounded"
+      >
+        Add Address
+      </button>
+    </div>
+
+    <button type="submit" class="bg-green-500 text-white px-6 py-2 rounded">
+      Submit
+    </button>
+  </form>
+</div>

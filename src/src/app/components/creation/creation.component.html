@@ -1,0 +1,37 @@
+<div class="p-8 max-w-2xl mx-auto flex flex-col mt-14">
+    <h2 class="text-3xl font-bold mb-6 text-center">Creation Operators</h2>
+  
+    <!-- Buttons to trigger each operator -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <button 
+            (click)="useOf()" 
+            class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded transition-colors"
+        >
+            of()
+        </button>
+        <button 
+            (click)="useFrom()" 
+            class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded transition-colors"
+        >
+            from()
+        </button>
+        <button 
+            (click)="useInterval()" 
+            class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded transition-colors"
+        >
+            interval()
+        </button>
+        <button 
+            (click)="useTimer()" 
+            class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded transition-colors"
+        >
+            timer()
+        </button>
+    </div>
+
+    <div class="space-y-2">
+        <div *ngFor="let result of results" class="result bg-gray-100 p-3 rounded-lg">
+            {{ result }}
+        </div>
+    </div>
+</div>
