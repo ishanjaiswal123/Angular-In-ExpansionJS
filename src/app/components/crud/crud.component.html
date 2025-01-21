@@ -1,0 +1,84 @@
+<div class="p-6 max-w-4xl mx-auto bg-white rounded shadow">
+    <h2 class="text-2xl font-bold mb-4 text-center text-blue-700">CRUD Operations</h2>
+  
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="mb-4 p-4 text-sm text-red-700 bg-red-100 border border-red-300 rounded">
+      {{ errorMessage }}
+    </div>
+  
+    <!-- Create Form -->
+    <div class="mb-6 p-4 bg-gray-50 border rounded">
+      <h3 class="text-lg font-medium mb-3 text-gray-800">Create New Item</h3>
+      <div class="space-y-3">
+        <input 
+          [(ngModel)]="newItem.title" 
+          placeholder="Title" 
+          class="w-full px-3 py-2 border rounded outline-none focus:ring focus:ring-blue-300">
+        
+        <input 
+          [(ngModel)]="newItem.body" 
+          placeholder="Body" 
+          class="w-full px-3 py-2 border rounded outline-none focus:ring focus:ring-blue-300">
+        
+        <button 
+          (click)="createItem()" 
+          class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
+          Create
+        </button>
+      </div>
+    </div>
+  
+    <!-- Items List -->
+    <div class="space-y-4">
+      <div *ngFor="let item of items" class="p-4 border rounded shadow-sm bg-gray-50">
+        <div class="flex justify-between items-center">
+          <div>
+            <h4 class="font-medium text-gray-800">{{ item.title }}</h4>
+            <p class="text-gray-600 text-sm">{{ item.body }}</p>
+          </div>
+          <div class="flex space-x-2">
+            <button 
+              (click)="selectItem(item)" 
+              class="bg-yellow-400 text-white px-3 py-1 rounded hover:bg-yellow-500">
+              Edit
+            </button>
+            <button 
+              (click)="deleteItem(item.id!)" 
+              class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Edit Modal -->
+    <div *ngIf="selectedItem" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+      <div class="bg-white p-6 rounded shadow-lg w-full max-w-md">
+        <h3 class="text-lg font-medium mb-3 text-gray-800">Edit Item</h3>
+        <div class="space-y-3">
+          <input 
+            [(ngModel)]="selectedItem.title" 
+            class="w-full px-3 py-2 border rounded outline-none focus:ring focus:ring-blue-300">
+          
+          <input 
+            [(ngModel)]="selectedItem.body" 
+            class="w-full px-3 py-2 border rounded outline-none focus:ring focus:ring-blue-300">
+          
+          <div class="flex justify-end space-x-2">
+            <button 
+              (click)="selectedItem = null" 
+              class="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500">
+              Cancel
+            </button>
+            <button 
+              (click)="updateItem()" 
+              class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+              Update
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

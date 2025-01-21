@@ -7,6 +7,8 @@ import { FilteringComponent } from './filtering/filtering.component';
 import { CombinationComponent } from './combination/combination.component';
 import { FormComponent } from './form/form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
+import { CrudComponent } from './crud/crud.component';
 
 
 @NgModule({
@@ -16,7 +18,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TransformationComponent,
     FilteringComponent,
     CombinationComponent,
-    FormComponent
+    FormComponent,
+    ReactiveFormComponent,
+    CrudComponent
   ],
   imports: [
     CommonModule,

@@ -7,6 +7,8 @@ import { CombinationComponent } from './components/combination/combination.compo
 import { CombinationGuardService } from './services/combination-guard.service';
 import { FormComponent } from './components/form/form.component';
 import { FormGuardService } from './services/form-guard.service';
+import { ReactiveFormComponent } from './components/reactive-form/reactive-form.component';
+import { CrudComponent } from './components/crud/crud.component';
 
 const routes: Routes = [
   {path: "", redirectTo: "creation", pathMatch: "full"},
@@ -15,7 +17,8 @@ const routes: Routes = [
   {path: "filtering" , component: FilteringComponent},
   {path: "combination", component: CombinationComponent, canActivate: [CombinationGuardService]},
   {path: "form", component: FormComponent, canDeactivate: [FormGuardService]},
-  { path: 'combination', loadChildren: () => import('./components/combination/combination.module').then(m => m.CombinationModule) }
+  { path: 'reactive-form', component: ReactiveFormComponent },
+  { path: 'crud', component: CrudComponent}
 ];
 
 @NgModule({
